@@ -122,6 +122,7 @@ public class HomeWork {
 
     }
     public static void main(String[] args) {
+
 //Задание 1
 //        int[] arr = new int[5];
 //        for (int i = 0; i < arr.length; i++){
@@ -162,5 +163,6 @@ public class HomeWork {
 //                arr8) {
 //            System.out.print(cnt + " ");
 //        }
+
     }
 }
