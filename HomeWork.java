@@ -12,8 +12,12 @@ public class HomeWork {
     //Задание 2
     private static void initArr(int... a){
 
-        for(int i = 0; i < a.length; i++){
-            a[i] = i == 0 ? 1 : a[i - 1] + 3;
+		a[0] = 1;
+		
+        for(int i = 1; i < a.length; i++){
+
+           a[i] = a[i-1] + 3;
+          
         }
 
     }
@@ -22,7 +26,9 @@ public class HomeWork {
 
         for(int i = 0; i < a.length; i++)
         {
-            a[i] *= a[i] < 6 ? 2 : 1;
+            if (a[i] < 6){
+                a[i] *= 2;
+            }
         }
 
     }
@@ -31,8 +37,10 @@ public class HomeWork {
 
         int min = a[0];
 
-        for (int i = 0; i < a.length; i++){
-            min = min > a[i] ? a[i] : min;
+        for (int i = 1; i < a.length; i++){
+            if (min > a[i]){
+                min = a[i];
+            }
         }
 
         return min;
@@ -42,8 +50,10 @@ public class HomeWork {
 
         int max = a[0];
 
-        for (int i = 0; i < a.length; i++){
-            max = max < a[i] ? a[i] : max;
+        for (int i = 1; i < a.length; i++){
+            if (max < a[i]){
+                max = a[i];
+            }
         }
 
         return max;
@@ -55,30 +65,29 @@ public class HomeWork {
         for (int i = 0; i < a.length; i++){
 
             for (int k = 0; k < a[i].length; k++){
-                a[i][k] = i == k ? 1 : 0;
+                if (i == k || (k == a.length - 1 - i)) {
+                    a[i][k] = 1;
+                } else {
+                    a[i][k] = 0;
+                }
             }
-
         }
 
     }
     //Задание 6
     private static boolean checkBalance(int... a){
 
-        int sumLeft;
-        int sumRight;
+        int sumLeft = 0;
+        int sumRight = 0;
+
+        for (int k = 0; k < a.length; k++){
+            sumRight += a[k];
+        }
 
         for(int i = 0; i < a.length; i++){
 
-            sumLeft = 0;
-            sumRight = 0;
-
-            for(int k = 0; k <= i; k++){
-                sumLeft += a[k];
-            }
-
-            for(int l = i + 1; l < a.length; l++){
-                sumRight += a[l];
-            }
+            sumLeft += a[i];
+            sumRight -= a[i];
 
             if(sumLeft == sumRight){
                 return true;
@@ -92,32 +101,31 @@ public class HomeWork {
     private static void moveArr(int move, int... a){
 
         int reserveVal;
+        int multi;
+        int indx;
+        int indxRes;
+
+        if (move > 0){
+            multi = -1;
+            indxRes = a.length - 1;
+            indx = 0;
+        } else {
+            multi = 1;
+            indxRes = 0;
+            indx = a.length - 1;
+        }
 
         for (int i = move; i != 0;){
 
-            if (i > 0){
+            reserveVal = a[indxRes];
 
-                reserveVal = a[a.length-1];
-
-                for (int k = a.length-1; k > 0; k--){
-                    a[k] = a[k-1];
-                }
-
-                a[0] = reserveVal;
-                i--;
-
-            } else {
-
-                reserveVal = a[0];
-
-                for (int k = 0; k < a.length-1; k++){
-                    a[k] = a[k+1];
-                }
-
-                a[a.length-1] = reserveVal;
-                i++;
-
+            for (int k = indxRes; k != indx; k += multi){
+                a[k] = a[k + multi];
             }
+
+            a[indx] = reserveVal;
+            i += multi;
+
         }
 
     }
@@ -143,10 +151,10 @@ public class HomeWork {
 //        System.out.println(minVal(3,7,3,2,9,13,8,7));
 //        System.out.println(maxVal(1,7,3,2,9,13,8,7));
 //Задание 5
-//        int[][] arr5 = new int[5][5];
+//        int[][] arr5 = new int[7][7];
 //        diagArr(arr5);
 //Задание 6
-//        System.out.print(checkBalance(2,1,1,2,7));
+//        System.out.print(checkBalance(2,1,1,2,15));
 //Задание 7-8
 //        int[] arr8 = new int[5];
 //        for (int i = 0; i < arr8.length; i++){
