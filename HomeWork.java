@@ -1,7 +1,8 @@
 package ru.geekbrains.lesson_b;
 
 public class HomeWork {
-    //Задание 1
+    
+	//Задание 1
     private static void invertArr(int... a){
 
         for (int i = 0; i < a.length; i++){
