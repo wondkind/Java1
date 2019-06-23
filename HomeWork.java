@@ -12,13 +12,12 @@ public class HomeWork {
     //Задание 2
     private static void initArr(int... a){
 
-        for(int i = 0; i < a.length; i++){
+		a[0] = 1;
+		
+        for(int i = 1; i < a.length; i++){
 
-            if(i != 0){
-                a[i] = a[i-1] + 3;
-            } else {
-                a[i] = 1;
-            }
+           a[i] = a[i-1] + 3;
+          
         }
 
     }
